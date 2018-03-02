@@ -66,3 +66,27 @@ def updateBall(paddle1Ypos, paddle2Ypos, ballXpos, ballYpos, ballXDirection, bal
         ballYDirection = -1
     return [ score, paddle1YPos, paddle2Ypos, ballXpos, ballYpos, ballXDirection, ballYDirection]
 
+def updatePaddle1(action, paddle1YPos):  # the action is just an array of where its going
+    if(action[1] == 1):  # if move up
+        paddle1YPos = paddle1YPos - PADDLE_SPEED
+    if(action[2] == 1):  # if move down
+        paddle1YPos = paddle1YPos - PADDLE_SPEED
+      # dont let it move off the screen
+    if(paddle1YPos < 0):
+        paddle1YPos = 0
+    if(paddle1YPos > WINDOW_HEIGHT - PADDLE_HEIGHT):
+        paddle1YPos = WINDOW_HIEGHT - PADDLE_HEIGHT
+    return paddle1YPos
+def updatePaddle2(action, paddle2YPos):  # the action is just an array of where its going
+    if(action[1] == 1):  # if move up
+        paddle2YPos = paddle2YPos - PADDLE_SPEED
+    if(action[2] == 1):  # if move down
+        paddle2YPos = paddle2YPos - PADDLE_SPEED
+      # dont let it move off the screen
+    if(paddle2YPos < 0):
+        paddle2YPos = 0
+    if(paddle2YPos > WINDOW_HEIGHT - PADDLE_HEIGHT):
+        paddle2YPos = WINDOW_HIEGHT - PADDLE_HEIGHT
+    return paddle2YPos
+
+
