@@ -57,5 +57,12 @@ def updateBall(paddle1Ypos, paddle2Ypos, ballXpos, ballYpos, ballXDirection, bal
         ballXDirection = -1
         score = 1
         return [ score, paddle1YPos, paddle2Ypos, ballXpos, ballYpos, ballXDirection, ballYDirection]
-
+    
+    if(ballYpos <= 0):
+        ballYPos = 0 
+        ballYDirection = 1
+    elif(ballYPos >= WINDOW_HEIGHT - BALL_HEIGHT):
+        ballYPos = WINDOW_HEIGHT - BALL_HEIGHT
+        ballYDirection = -1
+    return [ score, paddle1YPos, paddle2Ypos, ballXpos, ballYpos, ballXDirection, ballYDirection]
 
