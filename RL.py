@@ -1,6 +1,6 @@
   # our reinforcement learning with tensor flow
 import tensorflow as tf
-from opencv import cv2  # open cv helps us format our pixel data better for reading in tensor flow
+import cv2  # open cv helps us format our pixel data better for reading in tensor flow
 import pong
 import numpy as np  # which is going to help us with math
 import random
@@ -62,6 +62,15 @@ def createGraph():
     return s, fc5
 
 def main():
-    #
-      # 
-      #  
+      # create session
+    sess = tf.InteractiveSession()
+      # input layer and our output layer
+    inp, out = createGraph()
+    trainGraph(inp, out, sess)
+
+if __name__ == "__main__" :
+    main()
+    
+'''
+i do not have time to fix the errors here
+'''
