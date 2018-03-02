@@ -89,4 +89,35 @@ def updatePaddle2(action, ballYPos):  # the action is just an array of where its
         paddle2YPos = WINDOW_HIEGHT - PADDLE_HEIGHT
     return paddle2YPos
 
+  # define our pong game class
+class PongGame:
+    def __init__(self):
+        num = random.randint(0, 9)  # random number initial direction of ball
+        self.tally = 0  # keep score
+        self.paddle1YPos = WINDOW_HEIGHT / 2 - PADDLE_HEIGHT / 2
+        self.paddle2YPos = WINDOW_HEIGHT / 2 - PADDLE_HEIGHT / 2
+        self.ballXDirection = 1
+        self.ballYDirection = 1
+        self.ballXPos = WINDOW_WIDTH / 2 - BALL_WIDTH / 2
+    def getPresentFrame(self):  # we want to feed our learning algorithm the pixels
+        pygame.event.pump()  # for each frame, call the event queue
+        screen.fill(BLACK)  # make background black
+        drawPaddle1(self.paddle1YPos)
+        drawPaddle2(self.paddle2YPos)
+        drawBall(self.ballXPos, self.ballYPos)
+          # we want to take all the pixels from the entire game and return that
+        image_data = pygame.surfarray.array3d(pygame.display.get_surface())
+        pygame.display.flip()  # update the window
+        return image_data  # return our pixel data
+    def getNextFrame(self, action):  # action is what direction we want to move in
+        pygame.event.pump()  # call the event queue
+        screen.fill(BLACK)
+        self.paddle1YPos = updatePaddle1(action, self.paddle1YPos)
+        drawPaddle1(self.paddle1YPos)
+        self.paddle2YPos = updatePaddle2(action, self.paddle2YPos, self.ballYPos)
+        drawBall(self.ballXPos, self.ballYPos)
+        image_data = pygame.surfarray.array3d(pygame.display.get_surface())
+        pygame.display.flip()
+        self.tally = self.tally + score
+        return [score, image_data]
 
