@@ -21,3 +21,28 @@ BATCH = 100  # batch size how many times we want to train
 
   # five layer convulusional nuero network, a convulusional neuro network is the kind that reads an image
   # create TensorFlow TF graph
+def createGraph():
+      # we want to first create our first convolutional layer, bias vector
+      # tf.zeros start an empty tensor graph with just zeros and we are going to fill it with information over time
+    W_conv1 = tf.Variable(tf.zeros([8, 8, 4, 32]))  # first convolusional layer using tensor flow variables and define the size of it,
+    b_conv1 = tf.Variable(tf.zeros[32])  # our bias vector will help us find out in what way we want our data to flow, 32 bits
+
+      # second convolutional layer
+    W_conv2 = tf.Variable(tf.zeros[4,4,32,64])
+    b_conv2 = tf.Variable(tf.zeros[64])
+
+      # third
+    W_conv3 = tf.Variable(tf.zeros[3,3,64,64])
+    b_conv3 = tf.Variable(tf.zeros[64])
+
+    W_fc4 = tf.Variable(tf.zeros[784, ACTIONS])
+    b_fc4 = tf.Variable(tf.zeros[784])
+
+      # last layer
+    W_fc5 = tf.Variable(tf.zeros[784, ACTIONS])
+    b_fc5 = tf.Variable(tf.zeros[ACTIONS])
+
+    '''
+    we created five layers 
+    and in each of them we created an input size
+    '''
