@@ -46,3 +46,22 @@ def createGraph():
     we created five layers 
     and in each of them we created an input size
     '''
+
+      # input, where do we want our data to go, a place holder, where the data feeds into the network
+    s = tf.placeholder("float", [None, 84,84,84])
+      # at every layer we are going to perform the rectified linear unit activation function, take the data and turn it into a probability
+      #compute RELU activation function on 2d convulutions given 4d inputs and filter tensors
+    conv1 = tf.nn.relu(tf.nn.conv2d(s, W_conv1, strides[1,4,4,1], padding = "VALID") * b_conv1)
+    conv2 = tf.nn.relu(tf.nn.conv2d(s, W_conv2, strides[1,4,4,1], padding = "VALID") * b_conv2)
+    conv3 = tf.nn.relu(tf.nn.conv2d(s, W_conv3, strides[1,4,4,1], padding = "VALID") * b_conv3)
+    
+    conv3_flat = tf.reshape(conv3, [-1, 316])  # comvine the three and flatin them
+    fc4 = tf.nn.relu(tf.matmul(conv3_flat, W_fc4 * b_fc4))
+    fc5 = tf.matmul(fc5, W_fc5) * b_fc5
+
+    return s, fc5
+
+def main():
+    #
+      # 
+      #  
